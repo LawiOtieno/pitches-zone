@@ -1,0 +1,70 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+
+<!-- Styles block -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
+</head>
+<body>
+<!-- Content block -->
+{% block content %}
+
+
+<div class="container check" style="width: 80%;margin-bottom: 20px;">
+    <form class="d-flex justify" style="display: flex;">
+        <input class="form-control" type="search" placeholder="Search" name="movie_query" aria-label="Search">
+        <button style="margin-left: 10px;" class="btn btn-success btn-outline-success checked"  type="submit">Search</button>
+      </form>
+
+</div>
+
+
+
+<div class="container-fluid" style="background-color: black;">
+
+    <!-- Popular movie -->
+    <div class="row">
+        <h3> Popular Movies</h3>
+        <ul>
+            {{ macro.displayMovieList(popular)}}
+        </ul>
+    </div>
+    <!-- Upcoming movie  -->
+    <div class="row">
+
+        <h3> Upcoming Movies </h3>
+        <ul>
+            {{ macro.displayMovieList(upcoming)}}
+        </ul>
+    </div>
+
+    <!-- Now showing movie -->
+    <div class="row">
+
+        <h3>Now Showing</h3>
+        <ul>
+            {{ macro.displayMovieList(now_showing)}}
+        </ul>
+    </div>
+    <div class="row">
+
+        <h3>Top Rated</h3>
+        <ul>
+            {{ macro.displayMovieList(top_rated)}}
+        </ul>
+    </div>
+
+</div>
+{% endblock%}
+
+</body>
+</html>
