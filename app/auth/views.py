@@ -8,6 +8,7 @@ from ..email import mail_message
 
 
 @auth.route('/login',methods=['GET','POST'])
+# @login_required
 def login():
     login_form = LoginForm()
     if login_form.validate_on_submit():
@@ -18,7 +19,7 @@ def login():
 
         flash('Invalid username or Password')
 
-    title = "watchlist login"
+    title = "pitches login"
     return render_template('auth/login.html',login_form = login_form,title=title)
 
     
@@ -45,3 +46,6 @@ def register():
     title = "New Account"
 
     return render_template('auth/register.html',registration_form = form,title = title)    
+
+
+    
