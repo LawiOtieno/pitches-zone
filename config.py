@@ -6,7 +6,6 @@ class Config:
     
     '''
 
- 
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:lawioti@localhost/pitches'
     SECRET_KEY = os.urandom(32)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -38,11 +37,7 @@ class ProdConfig(Config):
         Config: The parent configuration class with General configuration settings
     '''
     pass
-
-# class TestConfig(Config):
     
-
-
 
 class DevConfig(Config):
     
@@ -61,6 +56,7 @@ config_options = {
 
     'development':DevConfig,
     'production':ProdConfig,
+  
 }    
 
 

@@ -13,7 +13,6 @@ def load_user(user_id):
     return User.query.get(int(user_id))  
         
 
-
 class User(UserMixin,db.Model):
     __tablename__ = 'users'
 
@@ -31,7 +30,7 @@ class User(UserMixin,db.Model):
 
     @property
     def password(self):
-        raise AttributeError('You cannnot read the password attribute')
+        raise AttributeError('You can not read the password attribute')
 
     @password.setter
     def password(self, password):

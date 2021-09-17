@@ -24,7 +24,7 @@ login_manager.login_view = 'auth.login'
 
 def create_app(config_name):
 
-    # inititalizing application
+    # Initializing application
     app = Flask(__name__)
 
  
@@ -46,9 +46,6 @@ def create_app(config_name):
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint,url_prefix = '/auth')
 
-    # #setting config
-    # from .requests import configure_request
-    # configure_request(app)
 
     # configure UploadSet
     configure_uploads(app,photos)
