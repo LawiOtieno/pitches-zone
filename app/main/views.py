@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 from .forms import ReviewForm, UpdateProfile
-from ..models import User
+from ..models import User,Pitch,Comment,Upvote,Downvote
 from flask_login import login_required,current_user
 from .. import db,photos
 import markdown2  
@@ -11,15 +11,19 @@ import markdown2
 # Views
 
 @main.route('/')
-@login_required
 def index():
 
     '''
     View root page function that returns the index page and its data
 
-    '''    
-        
-    return render_template('index.html')
+    '''  
+    pitches = Pitch.query.all()
+    coding = Pitch.query.filter_by(category = 'Coding').all() 
+    business = Pitch.query.filter_by(category = 'Business').all()
+    religion = Pitch.query.filter_by(category = 'Religion').all()
+
+    return render_template('index.html', pitches = pitches, coding = coding,business = business,religion = religion)  
+
 
 
 @main.route('/user/<uname>')
