@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="utf-8">
     <title></title>
+
+    {% block scripts%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}" />
+    <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+    {% endblock %}
+
+
   </head>
+
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark text-white bg-success">
@@ -17,18 +27,19 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Pitches Zone</a>
             </li>
-    
+
           </ul>
-    
+
           <li class="nav-item dropdown nav navbar-nav navbar-right">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               MENU
             </a>
-    
+
             <ul class="dropdown-menu " aria-labelledby="navbarDropdown right d-inline">
               {% if current_user.is_authenticated %}
-              <li><a class="dropdown-item" href="{{url_for('main.profile',uname = current_user.username)}}">Profile</a></li>
+              <li><a class="dropdown-item" href="{{url_for('main.profile',uname = current_user.username)}}">Profile</a>
+              </li>
               <li><a class="dropdown-item" href="#">{{current_user.username}}</a></li>
               <li>
                 <hr class="dropdown-divider">
@@ -40,9 +51,10 @@
               {%endif%}
             </ul>
           </li>
-    
+
         </div>
       </div>
-    </nav>    
+    </nav>
   </body>
+
 </html>
