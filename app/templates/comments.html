@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<br>
+<body>
+  {% for comm in comment[::-1] %}
+  <div class="container">
+    <div class="card-groups">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">{{comm.author}}</h4>
+          <p class="card-text">{{comm.comment}}.</p>
+        </div>
+        <div class="card-footer bg-transparent border-success"><small class="text-muted">Publish date:{{comm.date_posted.strftime('%Y-%m-%d')}}</small></div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  {% endblock %}
+</body>

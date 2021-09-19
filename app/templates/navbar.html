@@ -5,36 +5,44 @@
     <title></title>
   </head>
   <body>
-    <div class="navbar navbar-inverse" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/"> PITCHES </a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
-                </ul>
-                
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                 
+
+    <nav class="navbar navbar-expand-lg navbar-dark text-white bg-success">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class=" display-4 container collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Pitches Zone</a>
+            </li>
+    
+          </ul>
+    
+          <li class="nav-item dropdown nav navbar-nav navbar-right">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              MENU
+            </a>
+    
+            <ul class="dropdown-menu " aria-labelledby="navbarDropdown right d-inline">
               {% if current_user.is_authenticated %}
-              <li><a href="#">{{current_user.username}}</a></li>
-              <li><a href="{{url_for('main.profile',uname = current_user.username)}}">Profile</a></li>
-              <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+              <li><a class="dropdown-item" href="{{url_for('main.profile',uname = current_user.username)}}">Profile</a></li>
+              <li><a class="dropdown-item" href="#">{{current_user.username}}</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="{{url_for('auth.logout')}}">Log Out</a></li>
               {% else %}
-              <li><a href="#">Guest</a></li>
-              <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+              <li><a class="dropdown-item" href="{{url_for('auth.login')}}">Guest</a></li>
+              <li><a class="dropdown-item" href="{{url_for('auth.login')}}">Login</a></li>
               {%endif%}
             </ul>
-
+          </li>
+    
         </div>
-    </div>
+      </div>
+    </nav>    
   </body>
 </html>
