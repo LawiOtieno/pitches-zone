@@ -25,12 +25,44 @@ def index():
     return render_template('index.html', pitches = pitches, coding = coding,business = business,religion = religion)  
 
 
+    @main.route('/create_new', methods = ['POST','GET'])
+    @login_required
+    def new_pitch():
+        form = PitchForm()
+        if form.validate_on_submit():
+            title = form.title.data
+            post = form.post.data
+            category = form.category.data
+            user_id = current_user
+            new_pitch_object = Pitch(post=post,user_id=current_user._get_current_object().id,category=category,title=title)
+            new_pitch_object.save_p()
+            return redirect(url_for('main.index'))
+            
+        return render_template('new_pitch.html', form = form)
+
+    @main.route('/comment/<int:pitch_id>', methods = ['POST','GET'])
+    @login_required
+    def comment(pitch_id):
+        form = CommentForm()
+        pitch = Pitch.query.get(pitch_id)
+        all_comments = Comment.query.filter_by(pitch_id = pitch_id).all()
+        if form.validate_on_submit():
+            comment = form.comment.data 
+            pitch_id = pitch_id
+            user_id = current_user._get_current_object().id
+            new_comment = Comment(comment = comment,user_id = user_id,pitch_id = pitch_id)
+            new_comment.save_c()
+            return redirect(url_for('.comment', pitch_id = pitch_id))
+        return render_template('comment.html', form =form, pitch = pitch,all_comments=all_comments)
+
+
 
 @main.route('/user/<uname>')
 @login_required
 def profile(uname):
     user = User.query.filter_by(username = uname).first()
-
+    user_id = current_user._get_current_object().id
+    posts = Pitch.query.filter_by(user_id = user_id).all()
     if user is None:
         abort(404)
 
@@ -40,8 +72,7 @@ def profile(uname):
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
 def update_profile(uname):
     user = User.query.filter_by(username = uname).first()
-    user_id = current_user._get_current_object().id
-    posts = Pitch.query.filter_by(user_id = user_id).all()
+    
     if user is None:
         abort(404)
 
