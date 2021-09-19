@@ -1,0 +1,24 @@
+{% macro showPitch(pitches) %}
+<div class="pitch">
+  {% if pitches %}
+  {% for pitch in pitches %}
+  <h3 class="title">{{pitch.title}}</h3>
+  <p>{{pitch.post}}</p>
+  <p>Category: {{pitch.category}}</p>
+  <p> Posted by: <span class="user text-info">{{pitch.user.username}}</span> on: <small class="text-info text-muted mr-2">{{ pitch.time.strftime('%Y-%m-%d') }}</small></p>
+  <div class="row actions">
+    <div class="col-md-4 comment">
+      <span>{{pitch.comment.count()}} <i class="fas fa-comment"></i> <a href="{{url_for('main.comment',pitch_id = pitch.id)}}">Comment Here</a></span>
+    </div>
+    <div class="col-md-4 upvote">
+      <button class="btn btn-success"> <a href="{{url_for('main.like',id = pitch.id)}}"><i class="fa fa-thumbs-up"></i> Like: {{pitch.upvote.count()}}</a></button>
+    </div>
+    <div class="col-md-4 downvote">
+      <button class="btn btn-danger"> <a href="{{url_for('main.dislike',id = pitch.id)}}"> <i class="fa fa-thumbs-down"></i> Dislike: {{pitch.downvote.count()}}</a></button>
+    </div>    
+  </div>
+  {% endfor %}
+  {% endif %}
+</div>
+
+{% endmacro %}
