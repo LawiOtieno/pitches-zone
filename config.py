@@ -6,8 +6,9 @@ class Config:
     
     '''
     SECRET_KEY = os.urandom(32)
+    # SECRET_KEY = os.environ.get('SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:lawioti@localhost/pitches'   
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
     UPLOADED_PHOTOS_DEST ='app/static/photos'
 
    
@@ -26,8 +27,6 @@ class Config:
 
 
 class ProdConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
-
 
     '''
     Production  configuration child class
@@ -35,7 +34,13 @@ class ProdConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    pass
+
+
+    # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL","")
+    if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
+        SQLALCHEMY_DATABASE_URI =SQLALCHEMY_DATABASE_URI.replace("postgres://","postgresql://",1)
+    
     
 
 class DevConfig(Config):
@@ -47,14 +52,20 @@ class DevConfig(Config):
         Config: The parent configuration class with General configuration settings
     '''
 
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:lawioti@localhost/pitches'
+
     DEBUG = True
 
+
+class TestConfig(Config):
+  SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:lawioti@localhost/pitches'
 
 
 config_options = {
 
     'development':DevConfig,
     'production':ProdConfig,
+    'test':TestConfig,
   
 }    
 

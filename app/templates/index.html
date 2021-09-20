@@ -2,10 +2,12 @@
 {% import 'macros.html' as macro %}
 
 
-{% block scripts%}
+{% block styles%}
 {{ super() }}
 <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}" />
-<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<!-- <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script> -->
 {% endblock %}
 
 
