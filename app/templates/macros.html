@@ -1,24 +1,57 @@
 {% macro showPitch(pitches) %}
 <div class="pitch">
-  {% if pitches %}
-  {% for pitch in pitches %}
-  <h3 class="title">{{pitch.title}}</h3>
-  <p>{{pitch.post}}</p>
-  <p>Category: {{pitch.category}}</p>
-  <p> Posted by: <span class="user text-info">{{pitch.user.username}}</span> on: <small class="text-info text-muted mr-2">{{ pitch.time.strftime('%Y-%m-%d') }}</small></p>
-  <div class="row actions">
-    <div class="col-md-4 comment">
-      <span>{{pitch.comment.count()}} <i class="fas fa-comment"></i> <a href="{{url_for('main.comment',pitch_id = pitch.id)}}">Comment Here</a></span>
+    {% if pitches %}
+    {% for pitch in pitches %}
+    <div class="card p-1 m-3">
+        <div class="card-body">
+            <h3 class="card-title text-center title">{{pitch.title}}</h3>
+            <p class="card-text">" {{pitch.post}} "</p>
+            <h6 class="card-subtitle mb-2 text-muted">
+                <strong>Category: {{pitch.category}}</strong>
+            </h6>
+            <p class="card-text">
+                <strong>
+                    Posted by: <span class="user text-info">{{pitch.user.username}}</span> 
+                    On: <small class="text-info text-muted mr-2">{{ pitch.time.strftime('%Y-%m-%d') }}</small>
+                </strong>
+            </p>
+            <li class="list-group-item text-center">
+                <span>
+                    <a class="text-decoration-none text-dark" href="{{url_for('main.comment',pitch_id = pitch.id)}}">
+                        <i class="fas fa-comment"></i> 
+                        Write Comment: {{pitch.comment.count()}}
+                    </a>
+                </span>
+            </li>
+            <br>
+            <div class="card-footer">
+                <div class="row text-center">
+                    <div class="col upvote">
+                        <button class="btn btn-success">
+                            <a class="text-decoration-none text-light" href="{{url_for('main.like',id = pitch.id)}}">
+                                <i class="fa fa-thumbs-up"></i> Like: {{pitch.upvote.count()}}
+                            </a>
+                        </button>
+                    </div>
+                    <div class="col downvote">
+                        <button class="btn btn-danger">
+                            <a class="text-decoration-none text-light" href="{{url_for('main.dislike',id = pitch.id)}}">
+                                <i class="fa fa-thumbs-down"></i> Dislike: {{pitch.downvote.count()}}
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4 upvote">
-      <button class="btn btn-success"> <a href="{{url_for('main.like',id = pitch.id)}}"><i class="fa fa-thumbs-up"></i> Like: {{pitch.upvote.count()}}</a></button>
-    </div>
-    <div class="col-md-4 downvote">
-      <button class="btn btn-danger"> <a href="{{url_for('main.dislike',id = pitch.id)}}"> <i class="fa fa-thumbs-down"></i> Dislike: {{pitch.downvote.count()}}</a></button>
-    </div>    
-  </div>
-  {% endfor %}
-  {% endif %}
+
+    <!-- del 1 start -->
+    
+
+    <!-- del 1 end -->
+
+    {% endfor %}
+    {% endif %}
 </div>
 
 {% endmacro %}
