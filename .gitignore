@@ -1,4 +1,5 @@
 virtual/
 *.pyc
-# instance/
+.env
+__pycache__
 start.sh
