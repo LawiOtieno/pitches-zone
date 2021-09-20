@@ -5,8 +5,8 @@ from app.models import User,Role
 
 
 # creating app instance
-app = create_app('production')
-# app = create_app('development')
+# app = create_app('production')
+app = create_app('development')
 
 
 migrate = Migrate(app,db)
