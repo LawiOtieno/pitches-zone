@@ -39,8 +39,9 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        mail_message("Welcome to watchlist","email/welcome_user",user.email,user=user)
+        # mail_message("Welcome to watchlist","email/welcome_user",user.email,user=user)
 
+        flash('Your account have been created successfully! Please, login.', 'success')
         return redirect(url_for('auth.login'))
 
     title = "New Account"
