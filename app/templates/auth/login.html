@@ -15,10 +15,14 @@
       {% endfor %}
       <!-- Login form -->
       {{wtf.quick_form(login_form)}}
-      <p> Don't have an account? <a href="{{url_for('auth.register')}}">Sign up here</a></p>
+      <p> Don't have an account? <a href="{{url_for('auth.register')}}"><button class="btn bg-primary">Sign up here</button></a></p>
      </div>
      <div class="col-md-2"> </div>
     </div>
 </div>
+
+
+<!-- Footer Here -->
+{% include 'footer.html' %}
 
 {% endblock%}

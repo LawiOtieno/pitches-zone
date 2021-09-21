@@ -1,15 +1,8 @@
 {% extends 'base.html'%}
 {% import 'bootstrap/wtf.html' as wtf %}
 
-<!-- Styles block -->
-{% block styles%}
- {{ super() }}
-  <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}"/>
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-{% endblock %}
-
 {% block content %}
-<div class="container" id="allcomments">
+<div class="container">
   <div class="row">
 
     {% if all_comments %}
@@ -42,4 +35,7 @@
   {%endif%}
 </div>
 
+
+<!-- Footer Here -->
+{% include 'footer.html' %}
 {% endblock%}

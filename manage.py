@@ -30,7 +30,7 @@ def test():
 
 @manager.shell
 def make_shell_context():
-    return dict(app = app,db = db,User = User,Role = Role,Pitch = Pitch,Comment = Comment,Upvote = Upvote,Downvote = Downvote) #,Pitch=Pitch, Comment=Comment     ,Pitches=Pitches, Coding = Coding,Business = Business,Forex=Forex,Religion = Religion
+    return dict(app = app,db = db,User = User,Role = Role,Pitch = Pitch,Comment = Comment,Upvote = Upvote,Downvote = Downvote) #
 
 if __name__ == '__main__':
     manager.run()

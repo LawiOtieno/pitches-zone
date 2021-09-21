@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg text-light display-6" style="background-color: #181a18;">
+<nav class="navbar navbar-default text-light display-6" style="background-color: #181a18;">
   <div class="container">
     <!-- Responsive navbar -->
     <div class="navbar-header">
@@ -13,32 +13,30 @@
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <a class="nav-link text-light text-decoration-none m-1" href="/">PITCHES</a>
-      <a class="nav-link text-light text-decoration-none m-1" href="{{url_for('main.index')}}">Featured</a>
+      <div class="d-inline">
+        <a class="nav-item bg-light rounded text-dark text-decoration-none m-1 p-2" href="/"><strong>PITCHES</strong></a>
+        <a class="nav-item bg-light rounded text-dark text-decoration-none m-1 p-2" href="{{url_for('main.index')}}">Featured</a>
+      </div>
 
 
-      <ul class="nav navbar-nav navbar-right">
-        <li class="">
+
+      <ul class="nav navbar-nav d-inline navbar-right">
+
         {% if current_user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link bg-success rounded text-light text-decoration-none m-1"
-            href="{{url_for('main.new_pitch')}}">Create Pitch</a>
-        </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-light text-decoration-none m-1" style='margin-right:30px'
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle text-light text-decoration-none m-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user"></i>&nbsp;
             <strong>{{current_user.username}}</strong>
           </a>
           <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-            <a class="dropdown-item" href="{{url_for('main.profile',name=current_user.username)}}">
+            <a class="dropdown-item text-light bg-dark text-decoration-none m-1" href="{{url_for('main.profile',name=current_user.username)}}">
               <i class="far fa-user"></i>&nbsp;
               <span>My account</span>
             </a>
 
             <br>
 
-            <a class="dropdown-item" href="{{url_for('auth.logout')}}">
+            <a class="dropdown-item text-light bg-dark text-decoration-none m-1" href="{{url_for('auth.logout')}}">
               <i class="fas fa-sign-out-alt"></i>&nbsp;
               <span>Logout</span>
             </a>
@@ -46,12 +44,13 @@
         </li>
         {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{{url_for('auth.login')}}" style='margin-right:30px'>
+          <a class="nav-link text-light bg-dark text-decoration-none m-1" href="{{url_for('auth.login')}}" style='margin-right:30px'>
             <i class="fas fa-sign-in-alt"></i>&nbsp;
-            <strong>Log In</strong></a>
+            <strong>Log In</strong>
+          </a>
         </li>
         <li class="nav-item">
-          <a style='margin-right:30px' class="nav-link" href="{{url_for('auth.login')}}">
+          <a class="nav-link text-light bg-dark text-decoration-none m-1" href="{{url_for('auth.login')}}">
             <i class="fas fa-user-plus"></i></i>&nbsp;
             <strong>Sign Up</strong>
           </a>
